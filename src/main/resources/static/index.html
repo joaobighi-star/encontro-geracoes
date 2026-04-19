@@ -32,7 +32,7 @@
         
         form { padding: 25px; }
         .texto-apoio { 
-            font-size: 15px; 
+            font-size: 14px; 
             color: #333; 
             margin-bottom: 20px; 
             line-height: 1.5;
@@ -41,28 +41,25 @@
             border-left: 4px solid #f39c12;
             border-radius: 4px;
         }
+
+        .grupo-campo { margin-bottom: 20px; }
+        label { font-weight: bold; display: block; margin-bottom: 8px; color: #1a3a5a; }
         
-        .participante-row {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            animation: fadeIn 0.4s ease-out;
-        }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .opcoes-radio { background: #f9f9f9; padding: 10px; border-radius: 8px; border: 1px solid #eee; }
+        .opcao { display: flex; align-items: center; margin-bottom: 8px; font-size: 14px; }
+        .opcao input { width: auto; margin-right: 10px; }
 
-        .campo-nome { flex: 2; }
-        .campo-idade { flex: 1.5; }
-
-        input, select { 
+        input[type="text"] { 
             width: 100%; 
             padding: 12px; 
             border: 2px solid #ddd; 
             border-radius: 8px; 
             box-sizing: border-box; 
             font-size: 14px;
-            transition: border-color 0.3s;
         }
-        input:focus, select:focus { border-color: #f39c12; outline: none; }
+        input:focus { border-color: #f39c12; outline: none; }
+
+        .alerta-pix { font-size: 12px; color: #e67e22; font-weight: bold; margin-top: 5px; display: block; }
 
         button { 
             width: 100%; 
@@ -71,11 +68,10 @@
             color: white; 
             border: none; 
             border-radius: 8px; 
-            margin-top: 20px; 
+            margin-top: 10px; 
             font-size: 18px; 
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.3s;
         }
         button:hover { background-color: #2c527a; }
     </style>
@@ -89,25 +85,54 @@
         
         <form id="formEvento">
             <div class="texto-apoio">
-                Confirme a sua participação e a de sua família ou seus convidados. 
-                Selecione a faixa etária para adequarmos as atividades.
+                Cada participante deverá preencher uma ficha individual.
             </div>
-            
-            <div id="listaParticipantes">
-                <div class="participante-row">
-                    <input type="text" class="campo-nome" placeholder="Nome Completo" required>
-                    <select class="campo-idade" required>
-                        <option value="">Faixa Etária</option>
-                        <option value="0 a 5">0 a 5</option>
-                        <option value="6 a 10">6 a 10</option>
-                        <option value="11 a 15">11 a 15</option>
-                        <option value="16 a 20">16 a 20</option>
-                        <option value="21 a 30">21 a 30</option>
-                        <option value="31 a 40">31 a 40</option>
-                        <option value="41 a 50">41 a 50</option>
-                        <option value="51 a 60">51 a 60</option>
-                        <option value="acima de 60">Acima de 60</option>
-                    </select>
+
+            <div class="grupo-campo">
+                <label>Nome Completo</label>
+                <input type="text" id="nome" placeholder="Digite seu nome" required>
+            </div>
+
+            <div class="grupo-campo">
+                <label>Faixa Etária</label>
+                <div class="opcoes-radio">
+                    <div class="opcao"><input type="radio" name="faixaEtaria" value="Até 12 anos" required> Até 12 anos</div>
+                    <div class="opcao"><input type="radio" name="faixaEtaria" value="13 a 18 anos"> 13 a 18 anos</div>
+                    <div class="opcao"><input type="radio" name="faixaEtaria" value="19 a 35 anos"> 19 a 35 anos</div>
+                    <div class="opcao"><input type="radio" name="faixaEtaria" value="36 a 55 anos"> 36 a 55 anos</div>
+                    <div class="opcao"><input type="radio" name="faixaEtaria" value="Acima de 56 anos"> Acima de 56 anos</div>
+                </div>
+            </div>
+
+            <div class="grupo-campo">
+                <label>Está congregando em alguma igreja?</label>
+                <div class="opcoes-radio">
+                    <input type="radio" name="congrega" value="SIM" required> SIM
+                    <input type="radio" name="congrega" value="NAO" style="margin-left: 20px;"> NÃO
+                </div>
+            </div>
+
+            <div class="grupo-campo">
+                <label>Vai participar do almoço (feijoada)?</label>
+                <div class="opcoes-radio">
+                    <div class="opcao"><input type="radio" name="vaiAlmocar" value="SIM" required> SIM</div>
+                    <span class="alerta-pix">Envie Pix R$20 para 21998672999 (Evanise)</span>
+                    <div class="opcao" style="margin-top: 10px;"><input type="radio" name="vaiAlmocar" value="NAO"> NÃO</div>
+                </div>
+            </div>
+
+            <div class="grupo-campo">
+                <label>Atividade esportiva ou de salão</label>
+                <div class="opcoes-radio">
+                    <div class="opcao"><input type="radio" name="atividade" value="Futebol" required> Futebol</div>
+                    <div class="opcao"><input type="radio" name="atividade" value="Vôlei"> Vôlei</div>
+                    <div class="opcao"><input type="radio" name="atividade" value="Dominó"> Dominó</div>
+                    <div class="opcao"><input type="radio" name="atividade" value="Dama"> Dama</div>
+                    <div class="opcao"><input type="radio" name="atividade" value="Xadrez"> Xadrez</div>
+                    <div class="opcao"><input type="radio" name="atividade" value="Outra"> Outra: 
+                        <input type="text" id="outraAtividade" style="margin-left: 10px; padding: 5px;">
+                    </div>
+                    <div class="opcao"><input type="radio" name="atividade" value="Nenhuma"> Nenhuma</div>
                 </div>
             </div>
 
@@ -116,68 +141,34 @@
     </div>
 
     <script>
-        const lista = document.getElementById('listaParticipantes');
-
-        function configurarMonitoramento(linha) {
-            const inputNome = linha.querySelector('.campo-nome');
-            inputNome.addEventListener('input', function handleInput() {
-                if (this.value.trim() !== "") {
-                    const novaLinha = document.createElement('div');
-                    novaLinha.className = 'participante-row';
-                    novaLinha.innerHTML = `
-                        <input type="text" class="campo-nome" placeholder="Nome do convidado">
-                        <select class="campo-idade">
-                            <option value="">Faixa Etária</option>
-                            <option value="0 a 5">0 a 5</option>
-                            <option value="6 a 10">6 a 10</option>
-                            <option value="11 a 15">11 a 15</option>
-                            <option value="16 a 20">16 a 20</option>
-                            <option value="21 a 30">21 a 30</option>
-                            <option value="31 a 40">31 a 40</option>
-                            <option value="41 a 50">41 a 50</option>
-                            <option value="51 a 60">51 a 60</option>
-                            <option value="acima de 60">Acima de 60</option>
-                        </select>
-                    `;
-                    lista.appendChild(novaLinha);
-                    this.removeEventListener('input', handleInput);
-                    configurarMonitoramento(novaLinha);
-                }
-            });
-        }
-
-        configurarMonitoramento(document.querySelector('.participante-row'));
-
         document.getElementById('formEvento').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const linhas = document.querySelectorAll('.participante-row');
-            let salvos = 0;
+            const dados = {
+                nome: document.getElementById('nome').value,
+                faixaEtaria: document.querySelector('input[name="faixaEtaria"]:checked').value,
+                congrega: document.querySelector('input[name="congrega"]:checked').value,
+                vaiAlmocar: document.querySelector('input[name="vaiAlmocar"]:checked').value,
+                atividade: document.querySelector('input[name="atividade"]:checked').value,
+                outraAtividade: document.getElementById('outraAtividade').value
+            };
 
-            for (let linha of linhas) {
-                const nome = linha.querySelector('.campo-nome').value.trim();
-                const idade = linha.querySelector('.campo-idade').value;
+            try {
+                const resposta = await fetch('/api/participantes', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dados)
+                });
 
-                if (nome !== "" && idade !== "") {
-                    const dados = { nome: nome, idade: idade };
-
-                    try {
-                        const resposta = await fetch('/api/participantes', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(dados)
-                        });
-
-                        if (resposta.ok) salvos++;
-                    } catch (erro) {
-                        console.error("Erro ao salvar:", erro);
-                    }
+                if (resposta.ok) {
+                    alert("Inscrição realizada com sucesso!");
+                    location.reload(); 
+                } else {
+                    alert("Erro ao salvar inscrição.");
                 }
-            }
-
-            if (salvos > 0) {
-                alert("Inscrição realizada com sucesso para " + salvos + " pessoa(s)!");
-                location.reload(); 
+            } catch (erro) {
+                console.error("Erro:", erro);
+                alert("Erro de conexão.");
             }
         });
     </script>
