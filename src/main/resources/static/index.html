@@ -89,9 +89,14 @@
             </div>
 
             <div class="grupo-campo">
-                <label>Nome Completo</label>
-                <input type="text" id="nome" placeholder="Digite seu nome" required>
-            </div>
+    <label>Nome Completo</label>
+    <input type="text" id="nome" placeholder="Digite seu nome" required>
+			</div>
+
+			<div class="grupo-campo">
+    <label>Telefone / WhatsApp</label>
+    <input type="text" id="telefone" placeholder="(00) 00000-0000" required>
+			</div>
 
             <div class="grupo-campo">
                 <label>Faixa Etária</label>
@@ -146,6 +151,7 @@
             
             const dados = {
                 nome: document.getElementById('nome').value,
+                telefone: document.getElementById('telefone').value,
                 faixaEtaria: document.querySelector('input[name="faixaEtaria"]:checked').value,
                 congrega: document.querySelector('input[name="congrega"]:checked').value,
                 vaiAlmocar: document.querySelector('input[name="vaiAlmocar"]:checked').value,
